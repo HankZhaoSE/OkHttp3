@@ -6,7 +6,7 @@ import com.squareup.picasso.Transformation;
 
 /**
  * Created by Administrator on 2017/2/15 0015.
- * y用于图片的裁剪
+ * 用于图片的裁剪
  */
 public class CutPicture implements Transformation {
 
