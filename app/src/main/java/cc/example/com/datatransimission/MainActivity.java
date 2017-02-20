@@ -140,18 +140,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-//    public void test() {
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                PostString postString = new PostString();
-//                postString.post();
-//                ;
-//            }
-//        }.start();
-//
-//    }
-
-
 }
