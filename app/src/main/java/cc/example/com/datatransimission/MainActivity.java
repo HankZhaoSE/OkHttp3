@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private OkManager manager;
 
     private OkHttpClient clients;
-    //图片下载的路径
-   private String img_path = "http://192.168.191.1:8080/OkHttp3Server/UploadDownloadServlet?method=download";
+
+    private String img_path = "http://192.168.191.1:8080/OkHttp3Server/UploadDownloadServlet?method=download";
     private String jsonpath = "http://192.168.191.1:8080/OkHttp3Server/ServletJson";
+    private String login_path="http://192.168.191.1:8080/OkHttp3Server/OkHttpLoginServlet";
 
 
     @Override
@@ -61,34 +62,6 @@ public class MainActivity extends AppCompatActivity {
         testImageView = (ImageView) findViewById(R.id.testImageView);
         button3 = (Button) findViewById(R.id.button3);
 
-//        final OkHttpClient clients = new OkHttpClient();
-//        //先构建一个Request的请求,使用的是get请求
-//        final Request request = new Request.Builder().url(img_path).build();
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                clients.newCall(request).enqueue(new Callback() {
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        Message message = handler.obtainMessage();
-//                        if (response.isSuccessful()) {
-//                            message.what = SUCCESS_SATUS;
-//                            message.obj = response.body().bytes();
-//                            handler.sendMessage(message);
-//                        } else {
-//                            handler.sendEmptyMessage(FAILURE);
-//                        }
-//                    }
-//                });
-//            }
-//
-//        });
         //-----------------------------------------------------------------------------------------
         manager = OkManager.getInstance();
         getJsonButton.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("username", "123");
                 map.put("password", "123");
-                manager.sendComplexForm("http://192.168.191.1:8080/OkHttp3Server/OkHttpLoginServlet", map, new OkManager.Fun4() {
+                manager.sendComplexForm(login_path, map, new OkManager.Fun4() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         Log.i(Tag, jsonObject.toString());
@@ -124,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 manager.asyncDownLoadImgtByUrl(img_path, new OkManager.Fun3() {
                     @Override
                     public void onResponse(Bitmap bitmap) {
-                       // testImageView.setBackgroundResource(0);
+                        // testImageView.setBackgroundResource(0);
                         testImageView.setImageBitmap(bitmap);
                         Log.i(Tag, "231541645");
                     }

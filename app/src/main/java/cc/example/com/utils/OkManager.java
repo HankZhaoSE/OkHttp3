@@ -120,21 +120,22 @@ public class OkManager {
         });
     }
 
-     private void onSuccessImgMethod(final Bitmap bitmap,final  Fun3 callBack){
-         handler.post(new Runnable() {
-             @Override
-             public void run() {
-                 if (callBack!=null){
-                     try {
-                         callBack.onResponse(bitmap);
-                     }catch (Exception e){
+    private void onSuccessImgMethod(final Bitmap bitmap, final Fun3 callBack) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (callBack != null) {
+                    try {
+                        callBack.onResponse(bitmap);
+                    } catch (Exception e) {
 
-                     }
+                    }
 
-                 }
-             }
-         });
-     }
+                }
+            }
+        });
+    }
+
     /**
      * 同步请求,在Android开发中不常用，因为会阻塞UI线程
      *
@@ -216,19 +217,19 @@ public class OkManager {
     public void asyncGetByteByUrl(String url, final Fun2 callback) {
         final Request request = new Request.Builder().url(url).build();
         client.newCall(request).enqueue(new Callback() {
-                                            @Override
-                                            public void onFailure(Call call, IOException e) {
 
-                                            }
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-                                            @Override
-                                            public void onResponse(Call call, Response response) throws IOException {
-                                                if (response != null && response.isSuccessful()) {
-                                                    onSuccessByteMethod(response.body().bytes(), callback);
-                                                }
-                                            }
-                                        }
-        );
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response != null && response.isSuccessful()) {
+                    onSuccessByteMethod(response.body().bytes(), callback);
+                }
+            }
+        });
     }
 
     /**
@@ -250,7 +251,7 @@ public class OkManager {
                 if (response != null && response.isSuccessful()) {
                     byte[] data = response.body().bytes();
                     Bitmap bitmap = new CutPicture().transform(BitmapFactory.decodeByteArray(data, 0, data.length));
-                    onSuccessImgMethod(bitmap,callback);
+                    onSuccessImgMethod(bitmap, callback);
 
                     System.out.println(data.length);
                 }
