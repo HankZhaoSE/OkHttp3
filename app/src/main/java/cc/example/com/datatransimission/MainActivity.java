@@ -46,30 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
     private OkHttpClient clients;
     //图片下载的路径
-   private String img_path = "http://192.168.191.1:8080/DownLoadUpLoad/UploadDownloadServlet?method=download";
-  //  private String img_path = "https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png";
-    private String jsonpath = "http://192.168.191.1:8080/HelloJson/ServletJson";
+   private String img_path = "http://192.168.191.1:8080/OkHttp3Server/UploadDownloadServlet?method=download";
+    private String jsonpath = "http://192.168.191.1:8080/OkHttp3Server/ServletJson";
 
-//    private Handler handler = new Handler(Looper.getMainLooper()) {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            switch (msg.what) {
-//                case SUCCESS_SATUS:
-//                    byte[] result = (byte[]) msg.obj;
-//                    //                   Bitmap bitmap= BitmapFactory.decodeByteArray(result,0,result.length);  //使用裁剪功能将此注销
-//                    // --------------------------------------------------------------------------------
-//                    Bitmap bitmap = new CutPicture().transform(BitmapFactory.decodeByteArray(result, 0, result.length));
-////               // --------------------------------------------------------------------------
-//                    testImageView.setImageBitmap(bitmap);
-//                    System.out.println(result);
-//                    break;         //得到一个字节数组
-//                case FAILURE:
-//                    break;
-//
-//            }
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +103,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //-------------------------------------------------------------------------
+        //用于登录请求测试，登录用户名和登录密码应该Sewrver上的对应
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("username", "123");
                 map.put("password", "123");
-                manager.sendComplexForm("http://192.168.191.1:8080/HelloJson/OkHttpLoginServlet", map, new OkManager.Fun4() {
+                manager.sendComplexForm("http://192.168.191.1:8080/OkHttp3Server/OkHttpLoginServlet", map, new OkManager.Fun4() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
                         Log.i(Tag, jsonObject.toString());
