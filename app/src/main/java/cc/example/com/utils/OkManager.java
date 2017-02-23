@@ -250,7 +250,8 @@ public class OkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 if (response != null && response.isSuccessful()) {
                     byte[] data = response.body().bytes();
-                    Bitmap bitmap = new CutPicture().transform(BitmapFactory.decodeByteArray(data, 0, data.length));
+
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
                     onSuccessImgMethod(bitmap, callback);
 
                     System.out.println(data.length);

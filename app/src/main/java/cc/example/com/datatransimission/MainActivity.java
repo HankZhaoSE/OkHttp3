@@ -2,13 +2,9 @@ package cc.example.com.datatransimission;
 
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
@@ -24,7 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import cc.example.com.utils.CutPicture;
+
 import cc.example.com.utils.OkManager;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -46,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
 
     private OkHttpClient clients;
 
+    //图片下载的请求地址
     private String img_path = "http://192.168.191.1:8080/OkHttp3Server/UploadDownloadServlet?method=download";
+    //请求返回值为Json数组
     private String jsonpath = "http://192.168.191.1:8080/OkHttp3Server/ServletJson";
+    //登录验证请求
     private String login_path="http://192.168.191.1:8080/OkHttp3Server/OkHttpLoginServlet";
 
 
